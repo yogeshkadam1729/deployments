@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: shopslistingapp
-          image: yogeshkadam1729/shops-service:2.0
+          image: yogeshkadam1729/shops-service:4.0
           imagePullPolicy: Always
           ports:
             - containerPort: 9091

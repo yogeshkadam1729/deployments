@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: eureka
-          image: yogeshkadam1729/eureka-service:3.0
+          image: yogeshkadam1729/eureka-service:4.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8761

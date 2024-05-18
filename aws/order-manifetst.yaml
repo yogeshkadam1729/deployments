@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: orderapp
-          image: yogeshkadam1729/order-service:2.0
+          image: yogeshkadam1729/order-service:4.0
           imagePullPolicy: Always
           ports:
             - containerPort: 9092
