@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopslistingapp
+  labels:
+    app: shopslistingapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shopslistingapp
+  template:
+    metadata:
+      labels:
+        app: shopslistingapp
+    spec:
+      containers:
+        - name: shopslistingapp
+          image: yogeshkadam1729/shops-service:2.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9091
+          env:
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: mysql-username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: mysql-password
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap
+                  key: shopslistingdb_url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shopslisting-service
+spec:
+  ports:
+    - protocol: TCP
+      port: 9091
+      targetPort: 9091
+  selector:
+    app: shopslistingapp
+ 
