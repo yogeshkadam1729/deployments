@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: aws-ingress
+  #namespace: argocd
+  annotations:
+    kubernetes.io/spec.ingressClassName: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  rules:
+    - http:
+        paths:
+          #- path: /
+          #  pathType: Prefix
+          #  backend:
+          #    service:
+          #      name: angular-service
+          #      port:
+          #        number: 80
+
+          - path: /shops
+            pathType: Prefix
+            backend:
+              service:
+                name: shopslisting-service
+                port:
+                  number: 9091
+
+          - path: /order
+            pathType: Prefix
+            backend:
+              service:
+                name: order-service
+                port:
+                  number: 9092
+
+
+
+         
